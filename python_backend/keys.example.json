@@ -1,0 +1,17 @@
+{
+  "_comment": "Copy this file to keys.json and fill in real values. Each key_id must correspond to a DIFFERENT Google Cloud project — that's what actually gives each entry its own RPM/RPD bucket. Get keys from Google AI Studio, one per project.",
+  "keys": [
+    {
+      "key_id": "project-a",
+      "api_key": "PASTE_KEY_FROM_PROJECT_A_HERE",
+      "rpm_limit": 13,
+      "rpd_limit": 1490
+    },
+    {
+      "key_id": "project-b",
+      "api_key": "PASTE_KEY_FROM_PROJECT_B_HERE",
+      "rpm_limit": 13,
+      "rpd_limit": 1490
+    }
+  ]
+}

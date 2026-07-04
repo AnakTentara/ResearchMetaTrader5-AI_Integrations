@@ -1,0 +1,21 @@
+[
+  {
+    "_comment": "PLACEHOLDER DATA — replace with real upcoming dates. Format: time_utc is naive ISO 8601, treated as UTC.",
+    "name": "Non-Farm Payrolls",
+    "time_utc": "2026-08-07T12:30:00",
+    "impact": "high",
+    "currency": "USD"
+  },
+  {
+    "name": "FOMC Rate Decision",
+    "time_utc": "2026-07-29T18:00:00",
+    "impact": "high",
+    "currency": "USD"
+  },
+  {
+    "name": "ECB Rate Decision",
+    "time_utc": "2026-07-23T12:15:00",
+    "impact": "high",
+    "currency": "EUR"
+  }
+]

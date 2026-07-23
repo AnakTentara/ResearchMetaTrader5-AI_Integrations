@@ -17,6 +17,24 @@ DEFAULT_BASE_URL = "https://ai.minervax.dev/v1"
 DEFAULT_MODEL = "mvx/claude-sonnet-4-6"
 
 
+def _load_env_fallback():
+    """Fallback loader for .env file if environment variable is not exported."""
+    for path_str in [".env", "../.env", "../../.env", "Experts/python_backend/.env"]:
+        p = Path(path_str)
+        if p.exists():
+            try:
+                for line in p.read_text(encoding="utf-8").splitlines():
+                    line = line.strip()
+                    if line and not line.startswith("#") and "=" in line:
+                        k, v = line.split("=", 1)
+                        k = k.strip()
+                        v = v.strip().strip("'").strip('"')
+                        if k and k not in os.environ:
+                            os.environ[k] = v
+            except Exception:
+                pass
+
+
 class ClaudeClient:
     def __init__(
         self,
@@ -26,6 +44,7 @@ class ClaudeClient:
         max_retries: int = 3,
         timeout: float = 60.0,
     ):
+        _load_env_fallback()
         self.api_key = api_key or os.environ.get("CLAUDE_API_KEY", "")
         if not self.api_key:
             raise ValueError(

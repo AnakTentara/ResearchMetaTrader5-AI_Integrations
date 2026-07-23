@@ -17,9 +17,30 @@ export PYTHONUNBUFFERED=1
 export TZ=UTC
 
 # --- Configuration & .env Loading ---
+# Search for .env in current dir, parent dir, or Experts/python_backend
+ENV_FILE=""
 if [ -f ".env" ]; then
-    echo "📄 Loading environment variables from .env file..."
-    export $(grep -v '^#' .env | xargs)
+    ENV_FILE=".env"
+elif [ -f "../.env" ]; then
+    ENV_FILE="../.env"
+elif [ -f "Experts/python_backend/.env" ]; then
+    ENV_FILE="Experts/python_backend/.env"
+fi
+
+if [ -n "$ENV_FILE" ]; then
+    echo "📄 Loading environment variables from $ENV_FILE..."
+    # Convert CRLF to LF and export variables safely
+    while IFS='=' read -r key value || [ -n "$key" ]; do
+        # Ignore comments and empty lines
+        [[ "$key" =~ ^[[:space:]]*# ]] && continue
+        [[ -z "$key" ]] && continue
+        # Clean carriage returns and quotes
+        key=$(echo "$key" | tr -d '\r' | xargs)
+        value=$(echo "$value" | tr -d '\r' | sed -e 's/^"//' -e 's/"$//' -e "s/^'//" -e "s/'$//")
+        if [ -n "$key" ]; then
+            export "$key=$value"
+        fi
+    done < "$ENV_FILE"
 fi
 
 PORT="${PORT:-2026}"

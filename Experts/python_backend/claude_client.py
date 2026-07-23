@@ -7,6 +7,7 @@ Uses the openai package with custom base_url for compatibility.
 import logging
 import os
 import time
+from pathlib import Path
 from typing import Optional
 
 from openai import OpenAI, APIError, APITimeoutError, RateLimitError

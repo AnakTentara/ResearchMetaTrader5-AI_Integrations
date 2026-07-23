@@ -1,0 +1,46 @@
+# ========================
+# MQL5 Project .gitignore
+# ========================
+
+# --- Binary / Compiled ---
+*.ex5
+*.ex4
+experts.dat
+
+# --- MT5 System / Standard Libraries ---
+Include/
+Indicators/
+logs/
+Profiles/
+Images/
+Libraries/
+Services/
+Scripts/
+Shared Projects/
+
+# --- Python ---
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# --- Python Backend Secrets ---
+Experts/python_backend/keys.json
+Experts/python_backend/quota.db
+Experts/python_backend/signal.json
+Experts/python_backend/signal.json.tmp
+Experts/python_backend/.venv/
+
+# --- Forward Observation ---
+Experts/forward_observation/state/
+Experts/forward_observation/logs/*.log
+
+# --- Strategy Research Data ---
+Experts/strategy_research/data/
+Experts/strategy_research/__pycache__/
+
+# --- OS ---
+Thumbs.db
+.DS_Store
+desktop.ini

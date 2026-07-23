@@ -16,6 +16,13 @@ echo "=========================================="
 export PYTHONUNBUFFERED=1
 export TZ=UTC
 
+# --- Navigate to python_backend directory ---
+# run.sh may be called from repo root or any parent directory.
+# Always cd to the directory containing this script so app.py is importable.
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$SCRIPT_DIR"
+echo "📁 Working directory: $(pwd)"
+
 # --- Configuration & .env Loading ---
 # Search for .env in current dir, parent dir, or Experts/python_backend
 ENV_FILE=""

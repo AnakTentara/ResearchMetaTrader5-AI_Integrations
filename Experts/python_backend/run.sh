@@ -93,6 +93,9 @@ if [ ! -f "calendar_events.json" ]; then
 fi
 echo "calendar_events.json ready"
 
+# --- Add Python script paths to PATH ---
+export PATH="$PATH:$HOME/.local/bin:/usr/local/bin"
+
 # --- Start Server ---
 echo ""
 echo "Starting HaikaruTrade Signal Server..."
@@ -102,4 +105,4 @@ echo "  GET  /status                 -> Pipeline status"
 echo "  POST /trigger               -> Force refresh"
 echo ""
 
-exec uvicorn app:app --host 0.0.0.0 --port "$PORT" --log-level info
+exec python -m uvicorn app:app --host 0.0.0.0 --port "$PORT" --log-level info

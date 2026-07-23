@@ -16,7 +16,12 @@ echo "=========================================="
 export PYTHONUNBUFFERED=1
 export TZ=UTC
 
-# --- Configuration ---
+# --- Configuration & .env Loading ---
+if [ -f ".env" ]; then
+    echo "📄 Loading environment variables from .env file..."
+    export $(grep -v '^#' .env | xargs)
+fi
+
 PORT="${PORT:-2026}"
 SYMBOL="${SYMBOL:-NZDUSD}"
 INTERVAL_MINUTES="${INTERVAL_MINUTES:-20}"

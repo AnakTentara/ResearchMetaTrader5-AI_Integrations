@@ -26,6 +26,7 @@ __pycache__/
 venv/
 
 # --- Python Backend Secrets ---
+Experts/python_backend/.env
 Experts/python_backend/keys.json
 Experts/python_backend/quota.db
 Experts/python_backend/signal.json
